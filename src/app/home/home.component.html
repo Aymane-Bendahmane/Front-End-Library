@@ -1,0 +1,50 @@
+<div class="content fourth-content" id="1">
+  <div><h3 style="color:green">Liste des Livres </h3></div>
+  <div >
+    <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+      <div class="form-group">
+        <label>keyword</label>
+        <input type="text" name="keyword" ngModel>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+      </div>
+    </form>
+    <ul *ngIf="pages" class="nav nav-pills">
+      <li class="clickable" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i = index">
+        <a (click)="onPageBook(i)">{{i}}</a>
+      </li>
+    </ul>
+    <div *ngIf="books && detailMode==1">
+      <div *ngFor="let b of books">
+        <div class="col-md-6">
+          <div class="panel panel-default heighted">
+            <div class="panel-heading">{{b.name}}</div>
+            <div class="panel-body">
+              <img height="150" class="img-thumbnail img-rounded btn img-150" (click)="onBookDetails(b)"
+                   [src]="this.bs.host+'/photoBook/'+b.id+'?ts='+getTS()"/>
+              <!--<div *ngIf="this.authService.isAdmin()">-->
+              <div>
+                <label>Date Entrée : {{b.date_entree}}</label>
+              </div>
+              <div>
+                <label>Description : {{b.description}}</label>
+              </div>
+
+            </div>
+            <div *ngIf="b.disponiblity==true" style="float:left">
+              <label>Status : </label>
+              <button disabled class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"
+                                                                    style="width:50px;"></span></button>
+            </div>
+            <div *ngIf="b.disponiblity==false" style="float:left">
+              <label>Status : </label>
+              <button disabled class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"
+                                                                   style="width:50px;"></span></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="content first-content">
+<div *ngIf="currentbook">
+  <div class="panel panel-default" >
+    <div class="panel-heading">Fiche du Livre: {{currentbook.name}}
+
+    <div class="panel-body">
+      <div class="col-md-5">
+        <img height="150" class="img-thumbnail img-rounded btn img-150" [src]="this.BService.host+'/photoBook/'+currentbook.id+'?ts='+getTS()"/>
+      </div>
+
+      <div class="col-md-7">
+        <div class="panel panel-default " style="height:250px;">
+          <div class="panel-body">
+            <label>Auteur du livre : {{currentbook.author}}</label>
+          </div>
+          <div class="panel-body">
+            <label>Date Entrée : {{currentbook.date_entree}}</label>
+          </div>
+          <div class="panel-body">
+            Description : {{currentbook.description}}
+          </div>
+        </div>
+        <div  style="float:right">
+          <button class="addMore" title="Réserver maintennant!" class="btn btn-success btn-sm"><span  class="glyphicon glyphicon-shopping-cart" style="width:50px;"></span></button>
+        </div>
+        <div>
+        <button class="btn btn-success btn-sm addMore"  title="Liste des Livres" (click)="backTobooks()"><span class="glyphicon glyphicon-circle-arrow-left" style="width:50px"></span></button>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
